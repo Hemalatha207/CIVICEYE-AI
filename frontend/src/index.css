@@ -1,0 +1,450 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════
+   CIVICEYE AI — GLOBAL DESIGN TOKENS
+═══════════════════════════════════════════════ */
+@layer base {
+  :root {
+    --color-coral:      #FF6B6B;
+    --color-coral-dark: #E85D5D;
+    --color-teal:       #14B8A6;
+    --color-teal-dark:  #0F766E;
+    --color-violet:     #8B5CF6;
+    --color-blue:       #3B82F6;
+
+    /* Dark theme surfaces */
+    --color-bg:         #060D1A;
+    --color-surface:    #0D1628;
+    --color-surface2:   #111B2E;
+    --color-surface3:   #162035;
+    --color-border:     rgba(255,255,255,0.08);
+    --color-border2:    rgba(20,184,166,0.2);
+
+    /* Typography */
+    --color-text:       #E2E8F0;
+    --color-text-muted: #94A3B8;
+    --color-text-dim:   #64748B;
+    --color-heading:    #F1F5F9;
+
+    /* Glow */
+    --glow-teal:    0 0 30px rgba(20,184,166,0.3);
+    --glow-violet:  0 0 30px rgba(139,92,246,0.3);
+    --glow-coral:   0 0 30px rgba(255,107,107,0.3);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--color-heading);
+  }
+
+  p {
+    color: var(--color-text);
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(20,184,166,0.3);
+    color: #fff;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   GLOBAL KEYFRAME ANIMATIONS
+═══════════════════════════════════════════════ */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50%       { opacity: 0.8; transform: scale(1.08); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes borderPulse {
+  0%, 100% { border-color: rgba(20,184,166,0.3); }
+  50%       { border-color: rgba(20,184,166,0.8); }
+}
+
+@keyframes slideInSidebar {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes auraRotate {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes blinkCaret {
+  50% { border-color: transparent; }
+}
+
+@keyframes ping-slow {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATION UTILITY CLASSES
+═══════════════════════════════════════════════ */
+
+.anim-fade-up          { animation: fadeInUp    0.5s cubic-bezier(0.16,1,0.3,1) both; }
+.anim-fade-down        { animation: fadeInDown  0.5s cubic-bezier(0.16,1,0.3,1) both; }
+.anim-fade-left        { animation: fadeInLeft  0.5s cubic-bezier(0.16,1,0.3,1) both; }
+.anim-fade-right       { animation: fadeInRight 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+.anim-fade-in          { animation: fadeIn      0.4s ease both; }
+.anim-scale-in         { animation: scaleIn     0.4s cubic-bezier(0.16,1,0.3,1) both; }
+.anim-float            { animation: float       4s ease-in-out infinite; }
+.anim-spin-slow        { animation: spin-slow   8s linear infinite; }
+.anim-border-pulse     { animation: borderPulse 2.5s ease-in-out infinite; }
+.anim-ping-slow        { animation: ping-slow   2s ease-out infinite; }
+
+/* Stagger delays */
+.delay-100 { animation-delay: 0.10s; }
+.delay-150 { animation-delay: 0.15s; }
+.delay-200 { animation-delay: 0.20s; }
+.delay-300 { animation-delay: 0.30s; }
+.delay-400 { animation-delay: 0.40s; }
+.delay-500 { animation-delay: 0.50s; }
+.delay-600 { animation-delay: 0.60s; }
+
+/* ═══════════════════════════════════════════════
+   GLASS / DARK SURFACE UTILITIES
+═══════════════════════════════════════════════ */
+
+.glass-dark {
+  background: rgba(6, 13, 26, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.glass-teal {
+  background: rgba(20, 184, 166, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(20,184,166,0.2);
+}
+
+.glass-panel {
+  background: rgba(13, 22, 40, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 1rem;
+}
+
+/* Command card — dark theme version */
+.command-card {
+  background: var(--color-surface2);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--color-text);
+}
+
+.command-card:hover {
+  box-shadow: 0 8px 32px rgba(20,184,166,0.12), 0 0 0 1px rgba(20,184,166,0.15);
+  border-color: rgba(20,184,166,0.25);
+  transform: translateY(-1px);
+}
+
+/* Shimmer text gradient */
+.shimmer-text {
+  background: linear-gradient(90deg, #14B8A6, #8B5CF6, #FF6B6B, #14B8A6);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Glow border animation */
+.glow-border-teal {
+  box-shadow: 0 0 0 1px rgba(20,184,166,0.3), 0 0 20px rgba(20,184,166,0.15);
+  border-color: rgba(20,184,166,0.4) !important;
+}
+
+/* Page enter transition */
+.page-enter {
+  animation: fadeInUp 0.45s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR — DARK
+═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar       { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: #0a1020; }
+::-webkit-scrollbar-thumb { background: #1e3050; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #14B8A6; }
+
+/* ═══════════════════════════════════════════════
+   LEAFLET MAP
+═══════════════════════════════════════════════ */
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  z-index: 10;
+}
+
+/* ═══════════════════════════════════════════════
+   STATUS BADGE GLOW
+═══════════════════════════════════════════════ */
+
+.status-online {
+  position: relative;
+}
+.status-online::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #22C55E;
+  animation: ping-slow 1.8s ease-out infinite;
+}
+
+/* ═══════════════════════════════════════════════
+   GLOBAL GLASSMORPHISM OVERRIDES
+   Converts ALL white boxes / inputs / tables
+   across every page to dark transparent glass
+═══════════════════════════════════════════════ */
+
+/* ── White containers → glass ── */
+.bg-white,
+[class*="bg-white"] {
+  background: rgba(13, 22, 40, 0.65) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+}
+
+/* ── Slate/light borders → subtle white border ── */
+.border-slate-100,
+.border-slate-200,
+.border-slate-300,
+[class*="border-slate-1"],
+[class*="border-slate-2"],
+[class*="border-slate-3"] {
+  border-color: rgba(255, 255, 255, 0.09) !important;
+}
+
+/* ── Slate backgrounds → dark surface ── */
+.bg-slate-50,
+.bg-slate-100,
+.bg-slate-200,
+[class*="bg-slate-5"],
+[class*="bg-slate-1"] {
+  background: rgba(13, 22, 40, 0.5) !important;
+}
+
+/* ── All text colors → visible on dark ── */
+.text-slate-900,
+.text-slate-800 {
+  color: #F1F5F9 !important;
+}
+.text-slate-700,
+.text-slate-600 {
+  color: #CBD5E1 !important;
+}
+.text-slate-500,
+.text-slate-400 {
+  color: #94A3B8 !important;
+}
+
+/* ── Form inputs & selects → glass ── */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+select,
+textarea {
+  background: rgba(6, 13, 26, 0.55) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #E2E8F0 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(148, 163, 184, 0.6) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(20, 184, 166, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.15) !important;
+  outline: none !important;
+}
+
+/* ── Table headers → dark glass ── */
+thead,
+.thead,
+th {
+  background: rgba(6, 13, 26, 0.7) !important;
+  color: #94A3B8 !important;
+  border-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* ── Table rows ── */
+tbody tr {
+  border-color: rgba(255, 255, 255, 0.05) !important;
+  transition: background 0.15s ease;
+}
+tbody tr:hover {
+  background: rgba(20, 184, 166, 0.05) !important;
+}
+
+/* ── Dividers ── */
+.divide-slate-100 > * + *,
+.divide-slate-200 > * + *,
+hr {
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* ── Step progress bars / wizard stepper ── */
+.bg-slate-200 {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ── Badge / tag chips ── */
+.bg-slate-100.text-slate-700,
+.bg-emerald-50,
+.bg-red-50,
+.bg-amber-50,
+.bg-blue-50,
+.bg-teal-50,
+.bg-purple-50,
+.bg-green-50 {
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+/* ── Dashed upload zones ── */
+.border-dashed {
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  background: rgba(13, 22, 40, 0.4) !important;
+}
+
+/* ── Override any hardcoded white shadows ── */
+.shadow-xs, .shadow-sm, .shadow, .shadow-md {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* ── Preserve teal / coral / violet backgrounds ── */
+.bg-\[\#14B8A6\], .bg-\[\#0F766E\], .bg-\[\#FF6B6B\], .bg-\[\#E85D5D\],
+[class*="bg-teal-"], [class*="bg-emerald-"],
+[class*="bg-red-5"], [class*="bg-rose-"],
+[class*="bg-purple-9"], [class*="bg-violet-"],
+[class*="bg-blue-9"], [class*="bg-indigo-9"],
+.bg-\[\#14B8A6\]\/15, .bg-\[\#FF6B6B\]\/15 {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ── Keep white text explicitly white ── */
+.text-white {
+  color: #ffffff !important;
+}
+
+/* ── Category selection cards (ReportIssue step 1) ── */
+.hover\:border-\[\#14B8A6\]:hover,
+[class*="hover:border-teal"] {
+  border-color: rgba(20, 184, 166, 0.6) !important;
+}
+
+/* ── Stat card icon backgrounds ── */
+.bg-\[\#E6FFFB\] { background: rgba(20, 184, 166, 0.12) !important; }
+.bg-\[\#FFF0F0\] { background: rgba(255, 107, 107, 0.12) !important; }
+.bg-amber-50    { background: rgba(245, 158, 11, 0.10) !important; }
+.bg-blue-50     { background: rgba(59, 130, 246, 0.10) !important; }
+.bg-emerald-50  { background: rgba(34, 197, 94, 0.10) !important; }
+.bg-purple-50   { background: rgba(139, 92, 246, 0.10) !important; }
+.bg-green-50    { background: rgba(34, 197, 94, 0.10) !important; }
+.bg-red-50      { background: rgba(239, 68, 68, 0.10) !important; }
+
+/* ── Stat card icon text colors stay vivid ── */
+.text-\[\#0F766E\] { color: #14B8A6 !important; }
+.text-\[\#E85D5D\] { color: #FF6B6B !important; }
+.text-amber-600  { color: #FBBF24 !important; }
+.text-blue-600   { color: #60A5FA !important; }
+.text-emerald-600 { color: #34D399 !important; }
+.text-purple-600 { color: #A78BFA !important; }
+
+/* ── Notification / dropdown popup ── */
+.bg-white.rounded-2xl,
+.bg-white.py-3 {
+  background: rgba(10, 18, 35, 0.97) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ── Select option dark background ── */
+option {
+  background: #0D1628 !important;
+  color: #E2E8F0 !important;
+}
